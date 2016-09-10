@@ -5,17 +5,13 @@ var token = '280956301:AAGSeA8De_HcjKLDhgwIt8odRILZhJf8sj4';
 // Setup polling way
 var bot = new TelegramBot(token, {polling: true});
 
-// Matches /echo [whatever]
-bot.onText(/\/echo (.+)/, function (msg, match) {
-    var fromId = msg.from.id;
-    var resp = match[1];
-    bot.sendMessage(fromId, resp);
+bot.onText(/\/start/, function(msg, match) {
+    console.log(msg);
+    var fromId = msg.chat.id;
+    bot.sendMessage(fromId, "Hello! Please type \/help for more options.");
 });
 
-// Any kind of message
-bot.on('message', function (msg) {
-    var chatId = msg.chat.id;
-    // photo can be: a file path, a stream or a Telegram file_id
-    var photo = 'cats.png';
-    bot.sendPhoto(chatId, photo, {caption: 'Lovely kittens'});
-});
+bot.onText(/\/help/, function(msg, match) {
+    console.log(msg);
+    
+}
