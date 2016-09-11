@@ -5,7 +5,7 @@ var request = require('request');
 var busstops = require('./busstops.json');
 var venues = require('./venue.json');
 var busmap = require('./busmap.json');
-var PORT = process.env.port || 3000;
+var PORT = process.env.PORT || 3000;
 
 var config = {
     apiKey: "AIzaSyAqqVtM9-jYlbImjgAw7Mk4rig5SGe2lN4",
@@ -165,7 +165,6 @@ bot.on('location', function(msg) {
 
 bot.on("message", function(msg) {
     if (msg.text !== undefined) {
-        console.log(msg);
         var chatId = msg.chat.id;
         var fromId = msg.from.id;
         var text = msg.text;
@@ -177,7 +176,6 @@ bot.on("message", function(msg) {
             var bus = bestRoute[0];
             var start = bestRoute[1];
             var end = bestRoute[2];
-            console.log(bus);
             if (bus.bus === undefined) {
             	return;
             } else if (bus.bus === "NA") {
