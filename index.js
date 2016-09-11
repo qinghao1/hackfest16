@@ -5,6 +5,7 @@ var request = require('request');
 var busstops = require('./busstops.json');
 var venues = require('./venue.json');
 var busmap = require('./busmap.json');
+var PORT = process.env.port || 3000;
 
 var config = {
     apiKey: "AIzaSyAqqVtM9-jYlbImjgAw7Mk4rig5SGe2lN4",
@@ -230,4 +231,4 @@ app.get('/callback', function(req, res) {
     }) 
 });
 
-app.listen(3000);
+app.listen(PORT);
