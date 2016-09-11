@@ -199,7 +199,7 @@ bot.onText(/\/travel/, function(msg, matcdh) {
 bot.onText(/\/login/, function(msg, match) {
 	  var fromId = msg.from.id;
 	  var chatId = msg.chat.id;
-	  var link = "https://ivle.nus.edu.sg/api/login/?apikey="+ivle_api_key+"&url=http://localhost:3000/callback?userID=" + fromId;
+	  var link = "https://ivle.nus.edu.sg/api/login/?apikey="+ivle_api_key+"&url=http://hackfest16.herokuapp.com/callback?userID=" + fromId;
 	  bot.sendMessage(chatId, "Hello! Please login here: " + link);
 });
 
