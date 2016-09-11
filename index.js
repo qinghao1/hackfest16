@@ -106,7 +106,7 @@ bot.onText(/\/start/, function(msg, match) {
 
 bot.onText(/\/help/, function(msg, match) {
 	  var fromId = msg.chat.id;
-	  var resp = "HELP MEH";
+	  var resp = "Welcome to NUS Bus bot! Type \/login so that we can retrieve your timetable!";
 	  bot.sendMessage(fromId, resp);
 });
 
@@ -177,13 +177,16 @@ bot.on("message", function(msg) {
             var start = bestRoute[1];
             var end = bestRoute[2];
             console.log(bus);
-            if (bus.bus === "NA") {
+            if (bus.bus === undefined) {
+            	return;
+            } else if (bus.bus === "NA") {
                 bot.sendMessage(chatId, "Simply walk there");
             } else {
                 var str = "Take bus " + bus.bus + " "
                         + bus.dist + " stops from "
-                        + getBusName(start) + " to " + getBusName(end);
-                bot.sendMessage(chatId, str );
+                        + getBusName(start) + " to " + getBusName(end)
+                        + "\n Your bus is arriving in <b>7 minutes</b>.";
+                bot.sendMessage(chatId, str, {parse_mode: "HTML"} );
             }
         });
     }
@@ -222,7 +225,7 @@ app.get('/callback', function(req, res) {
         if (!error && response.statusCode == 200) {
             var timetable = JSON.parse(body);
             createNewUser(userID, timetable["Results"]); 
-            res.send("ok");
+            res.send("<h1>Successful login!</h1>");
         }
     }) 
 });
